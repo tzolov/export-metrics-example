@@ -37,7 +37,12 @@ public MetricsEndpointMetricReader metricsEndpointMetricReader(MetricsEndpoint m
 }
 ```
 
-#### Test though `/metrics` endpoint
+#### Build
+```
+mvn clean install
+```
+
+#### Test though the `/metrics` endpoint
 Start the application
 ```
 java -jar java -jar target/export-metrics-example-0.0.1-SNAPSHOT.jar
@@ -81,5 +86,24 @@ Use the `dummy` mode to print the exported metrics instead fo sending them to th
 java -jar target/export-metrics-example-0.0.1-SNAPSHOT.jar --spring.metrics.export.ambari.metrics-collector-host=localhost --spring.metrics.export.ambari.metrics-buffer-size=0 --spring.metrics.export.ambari.writer-type=dummy --spring.metrics.export.triggers.ambariMetricExporter.includes=*hello.service.*
 ```
 The `spring.metrics.export.ambari.metrics-collector-host` property has to be set or activate the exporter. The `--spring.metrics.export.triggers.ambariMetricExporter.includes=*hello.service.*` property filters in only the custom metrics. The `--spring.metrics.export.ambari.metrics-buffer-size=0` sets the export batch size to 0.
+
+On the screen log you should see json messages like this:
+```json
+{
+  "metrics" : [ {
+    "metricname" : "hello.service.custom.metric",
+    "hostname" : "hostname",
+    "timestamp" : 1445615822846,
+    "appid" : "application.9f5ba1b3973368d3d5dea242af344d04",
+    "instanceid" : "",
+    "starttime" : 1445615822846,
+    "type" : "Integer",
+    "metrics" : {
+      "1445615822846" : 32.0
+    }
+  } ]
+}
+```
+
 
 Additional information how to use the [ambari-metric-writer](https://github.com/tzolov/ambari-metric-writer).
