@@ -1,6 +1,6 @@
 # Spring Boot Custom Metric Definition and Export
 
-Example application that shows how to define custom `push` and/or `pull` metrics and how to export them to external  repositories like Ambari Metic System. 
+Example application that shows how to define custom `push` and/or `pull` metrics and how to export them to external  repositories like Ambari Metric System. 
 Additional information how to use the [ambari-metric-writer](https://github.com/tzolov/ambari-metric-writer).
 
 ## 1. Implement custom `Push` and `Pull` metrics.
